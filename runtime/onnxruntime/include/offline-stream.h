@@ -7,7 +7,9 @@
 #include "model.h"
 #include "punc-model.h"
 #include "vad-model.h"
-#if !defined(__APPLE__)
+#if defined(__APPLE__)
+#include "com-define.h"
+#else
 #include "itn-model.h"
 #include "com-define.h"
 #endif
