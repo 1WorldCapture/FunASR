@@ -35,7 +35,7 @@ MODELSCOPE_BASE_URL="https://www.modelscope.cn"
 # ─── 模型定义 ────────────────────────────────────────────────────────────────
 # 格式: "角色|Model ID|说明|必选/可选"
 declare -a MODELS=(
-  "ASR|damo/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx|Paraformer-large 语音识别 (ONNX)|必选"
+  "ASR|manyeyes/paraformer-seaco-large-zh-timestamp-onnx-offline|SeacoParaformer 语音识别 + 时间戳 (ONNX)|必选"
   "VAD|damo/speech_fsmn_vad_zh-cn-16k-common-onnx|FSMN-VAD 语音活动检测 (ONNX)|推荐"
   "PUNC|damo/punc_ct-transformer_cn-en-common-vocab471067-large-onnx|CT-Transformer 标点恢复 (ONNX)|推荐"
   "ITN|thuduj12/fst_itn_zh|FST 反文本正则化|可选"
@@ -289,12 +289,13 @@ main() {
   echo -e "${BOLD}运行示例:${RESET}"
   echo ""
 
-  local asr_dir="$MODEL_BASE_DIR/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx"
+  local asr_dir="$MODEL_BASE_DIR/paraformer-seaco-large-zh-timestamp-onnx-offline"
   local vad_dir="$MODEL_BASE_DIR/speech_fsmn_vad_zh-cn-16k-common-onnx"
   local punc_dir="$MODEL_BASE_DIR/punc_ct-transformer_cn-en-common-vocab471067-large-onnx"
 
   echo -e "  ${CYAN}./funasr-onnx-offline \\\\${RESET}"
   echo -e "  ${CYAN}  --model-dir $asr_dir \\\\${RESET}"
+  echo -e "  ${CYAN}  --quantize  false \\\\${RESET}"
   echo -e "  ${CYAN}  --vad-dir   $vad_dir \\\\${RESET}"
   echo -e "  ${CYAN}  --punc-dir  $punc_dir \\\\${RESET}"
   echo -e "  ${CYAN}  --wav-path  test.wav${RESET}"
